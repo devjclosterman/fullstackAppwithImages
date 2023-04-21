@@ -1,9 +1,9 @@
-import 'bootstrap/dist.css/boottsrap.min.css';
+// import 'bootstrap/dist.css/boottsrap.min.css';
 import React, { useState } from 'react';
 import { Router } from '@reach/router';
-import Main from './views/main';
-import Add from './views/add';
-import OnePirate from './views/onePirate'
+// import Main from './views/main';
+// import Add from './views/add';
+// import OnePirate from './views/onePirate'
 
 function App() {
 
