@@ -14,5 +14,11 @@ const Card = props => {
         })
         .catch(err => console.log(err))
     }
-
-}
+     return (
+        <div class="card"> 
+         <div class="card-body d-flex">
+          <img
+         </div>
+        </div>
+     )
+} 
