@@ -1,30 +1,42 @@
-const Pirates = require("../models/pirates.model");
+const mongoose = require('mongoose');
 
-module.exports = {
-    index: (req, res) => {
-        Pirates.find().sort({name: 1})
-            .then(data => res.json({results: data}))
-            .catch(err => res.json({ message: 'Something went wrong... ', error: err }));
+const PiratesSchema = new mongoose.Schema({
+    name: {
+        type: String,
+        required: [true, "Pirate name is required!" ],
+        minlength: [3, "Pirate name must be at least 3 characters long!"]
     },
-    show: (req, res) => {
-        Pirates.findOne({ _id: req.params._id })
-            .then(data => res.json({results: data}))
-            .catch(err => res.json({ message: 'Something went wrong... ', error: err }));
+    image: {
+        type: String,
+        required: [true, "Pirate image is required!"]
     },
-    create: (req, res) => {
-        Pirates.create(req.body)
-            .then(data => res.json({results: data}))
-            .catch(err => res.json({ message: 'Something went wrong... ', error: err }));
+    treasure: {
+        type: Number,
+        required: [true, "Treasure # is required!"],
+        min: [0, "Pirate treasure cannot be a negitive #!"]
     },
-    update: (req, res) => {
-        Pirates.findOneAndUpdate({ _id: req.params._id }, req.body, { new: true, runValidators: true })
-            .then(data => res.json({results: data}))
-            .catch(err => res.json({ message: 'Something went wrong... ', error: err }));
+    phrase: {
+        type: String,
+        required: [true, "All pirates have a catch phrase! This is a known requirement."]
     },
-    delete: (req, res) => {
-        Pirates.deleteOne({ _id: req.params._id })
-            .then(data => res.json({results: data}))
-            .catch(err => res.json({ message: 'Something went wrong... ', error: err }));
+    position: {
+        type: String, 
+        required: [true, "All pirates must have a position in the crew!"]
+    },
+    leg: {
+        type: Boolean,
+        required: [true, "Peg leg is a required input!"]
+    },
+    patch: {
+        type: Boolean,
+        required: [true, "Eye patch is a required field!"]
+    },
+    hook: {
+        type: Boolean,
+        required: [true, "Hook hand is required field!"]
     }
+}, { timestamps: true });
 
-}
+const Pirates = mongoose.model("Pirates", PiratesSchema);
+
+module.exports = Pirates;
