@@ -2,7 +2,6 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 const cors = require('cors');
-//Dont forget 'npm i cors'
 
 require("./config/mongoose.config");
 
